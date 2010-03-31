@@ -1,6 +1,11 @@
 # -*- mode: org; -*-
+* TODO trampoline
+  some kind of tail-call-optimization abstraction
 * TODO ForEach
-** TODO R implementation
+** DONE R implementation
+   CLOSED: [2010-03-31 Wed 13:07]
+   - CLOSING NOTE [2010-03-31 Wed 13:07] \\
+     we have one in the lisp package.
    we don't have tail-call optimization; is it a risk to recurse?
    #+BEGIN_SRC org
      ,- foreach = function(f, ...)

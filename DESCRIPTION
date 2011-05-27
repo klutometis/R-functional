@@ -4,7 +4,7 @@ Title: Curry, Compose, and other higher-order functions
 Version: 0.1
 Date: 2010-03-02
 Author: Peter Danenberg <pcd@roxygen.org>
-Maintainer: Who to complain to <pcd@roxygen.org>
+Maintainer: Peter Danenberg <pcd@roxygen.org>
 Description: Curry, Compose, and other higher-order functions
 License: GPL (>= 2)
 LazyLoad: yes

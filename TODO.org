@@ -1,5 +1,25 @@
-# -*- mode: org; -*-
-* TODO trampoline
+* DONE Lazy currying
+  CLOSED: [2012-11-12 Mon 00:16]
+  This [[https://github.com/klutometis/R-functional/issues/1][issue]] from Jamie Folson.
+
+  #+BEGIN_SRC R
+    library(debug)
+    
+    Curry = function(FUN,...){
+      .curried=as.list(match.call())[c(-1,-2)]
+      debug(FUN, ..., .curried)
+      function(...){
+        .args=as.list(match.call())[-1]
+        eval(substitute(do.call(FUN,c(.curried,.args))))
+      }}
+    
+    harro <- function(a, b, c) c(a, b, c)
+    harro.a <- Curry(harro, a=2)
+    harro.b <- Curry(harro.a, b=3)
+    harro.c <- Curry(harro.b, c=4)
+    stopifnot(harro.c() == c(2, 3, 4))
+  #+END_SRC
+* TODO Trampoline
   some kind of tail-call-optimization abstraction
 * TODO ForEach
 ** DONE R implementation

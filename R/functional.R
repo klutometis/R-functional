@@ -40,6 +40,11 @@ Negate <- function(f)
 ##' @export
 Compose <- function(...) {
   fs <- list(...)
+  
+  ## Thanks, Matthew Lungberg.
+  if (!all(sapply(fs, is.function)))
+    stop("Argument is not a function")
+
   function(...) Reduce(function(x, f) f(x),
                        fs,
                        ...)

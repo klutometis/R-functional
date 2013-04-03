@@ -3,7 +3,7 @@
 ##' Thanks, Byron Ellis.
 ##' \url{https://stat.ethz.ch/pipermail/r-devel/2007-November/047318.html}
 ##' @param FUN the function to be curried
-##' @param \dots the determining parameters
+##' @param ... the determining parameters
 ##' @return A new function partially determined
 ##' @export
 Curry <- function(FUN,...) {

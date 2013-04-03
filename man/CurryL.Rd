@@ -7,6 +7,8 @@
 }
 \arguments{
   \item{FUN}{the function to be curried}
+
+  \item{...}{the determining parameters}
 }
 \description{
   Lazy curry; thanks, Jamie!

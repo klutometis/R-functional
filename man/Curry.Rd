@@ -7,7 +7,7 @@
 \arguments{
   \item{FUN}{the function to be curried}
 
-  \item{\dots}{the determining parameters}
+  \item{...}{the determining parameters}
 }
 \value{
   A new function partially determined

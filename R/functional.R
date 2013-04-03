@@ -55,4 +55,5 @@ Compose <- function(...) {
 ##' Is concatenation benign?
 ##' @param \dots tautological arguments
 ##' @return The tautologized arguments, concatenated
+##' @export
 Identity <- function(...) c(...)

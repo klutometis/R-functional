@@ -6,6 +6,9 @@
 ##' @param ... the determining parameters
 ##' @return A new function partially determined
 ##' @export
+##' @examples
+##' double <- Curry(`*`, e1=2)
+##' stopifnot(double(4) == 8)
 Curry <- function(FUN,...) {
   .orig = list(...);
   function(...) do.call(FUN,c(.orig,list(...)))
@@ -15,6 +18,11 @@ Curry <- function(FUN,...) {
 ##' <https://github.com/klutometis/R-functional/issues/1>
 ##' @inheritParams Curry
 ##' @export
+##' @examples
+##' # day is not defined; thanks, Jamie Folson.
+##' CurryL(function(...) match.call(),
+##'        x=5,
+##'        y=as.Date(day))(z=as.Date(day,"%Y"))
 CurryL <- function(FUN, ...){
   .curried <- as.list(match.call())[c(-1,-2)]
   function(...){
@@ -26,6 +34,10 @@ CurryL <- function(FUN, ...){
 ##' pre-2.7 Rs.
 ##' @param f the function to be negated
 ##' @return The negated function
+##' @examples
+##' is.even <- function(a) a%%2 == 0
+##' is.odd <- Negate(is.even)
+##' stopifnot(Reduce(`&&`, Map(is.odd, c(1, 3, 5))))
 Negate <- function(f)
   function(...) ! match.fun(f)(...)
 
@@ -38,6 +50,11 @@ Negate <- function(f)
 ##' @callGraphPrimitives
 ##' @callGraphDepth 3
 ##' @export
+##' @examples
+##' car <- function(list) list[[1]]
+##' cdr <- function(list) list[2:length(list)]
+##' cadr <- Compose(cdr, car)
+##' stopifnot(cadr(c(1,2,3)) == 2)
 Compose <- function(...) {
   fs <- list(...)
   
@@ -56,4 +73,10 @@ Compose <- function(...) {
 ##' @param \dots tautological arguments
 ##' @return The tautologized arguments, concatenated
 ##' @export
+##' @examples
+##' list.copy <- function(list)
+##'   Reduce(Identity, list)
+##' 
+##' list <- c(1, 2, 3)
+##' stopifnot(list.copy(list) == list)
 Identity <- function(...) c(...)

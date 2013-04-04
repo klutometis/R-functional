@@ -16,4 +16,8 @@
   Thanks, Byron Ellis.
   \url{https://stat.ethz.ch/pipermail/r-devel/2007-November/047318.html}
 }
+\examples{
+double <- Curry(`*`, e1=2)
+stopifnot(double(4) == 8)
+}
 

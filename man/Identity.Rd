@@ -13,4 +13,11 @@
 \description{
   Is concatenation benign?
 }
+\examples{
+list.copy <- function(list)
+  Reduce(Identity, list)
+
+list <- c(1, 2, 3)
+stopifnot(list.copy(list) == list)
+}
 

@@ -14,4 +14,10 @@
   My Happy Hacking keyboard gave out during the writing of
   this procedure; moment of silence, please.
 }
+\examples{
+car <- function(list) list[[1]]
+cdr <- function(list) list[2:length(list)]
+cadr <- Compose(cdr, car)
+stopifnot(cadr(c(1,2,3)) == 2)
+}
 

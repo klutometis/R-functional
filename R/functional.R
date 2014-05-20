@@ -51,3 +51,9 @@ Compose <- function(...) {
 ##' @param \dots tautological arguments
 ##' @return The tautologized arguments, concatenated
 Identity <- function(...) c(...)
+
+##' Thanks, Gabor; see <http://stackoverflow.com/a/23726989>: swaps
+##' the first two arguments in a function.
+##' @param f The function whose arguments to swap
+##' @return A function with swapped arguments
+Swap <- function(f) function(x, y, ...) f(y, x, ...)

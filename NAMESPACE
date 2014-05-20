@@ -1,2 +1,4 @@
 export(Curry)
+export(CurryL)
 export(Compose)
+export(Swap)

@@ -1,8 +1,23 @@
 \name{Identity}
 \alias{Identity}
 \title{Identity function.}
-\usage{Identity(...)}
-\description{Identity function.}
-\details{Is concatenation benign?}
-\value{The tautologized arguments, concatenated}
-\arguments{\item{\dots}{tautological arguments}}
+\usage{
+  Identity(...)
+}
+\arguments{
+  \item{\dots}{tautological arguments}
+}
+\value{
+  The tautologized arguments, concatenated
+}
+\description{
+  Is concatenation benign?
+}
+\examples{
+list.copy <- function(list)
+  Reduce(Identity, list)
+
+list <- c(1, 2, 3)
+stopifnot(list.copy(list) == list)
+}
+

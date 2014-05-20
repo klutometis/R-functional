@@ -1,8 +1,23 @@
 \name{Negate}
 \alias{Negate}
-\title{Negate a function; borrowed from src/library/base/R/funprog...}
-\usage{Negate(f)}
-\description{Negate a function; borrowed from src/library/base/R/funprog.R for
+\title{Negate a function; borrowed from src/library/base/R/funprog.R for
 pre-2.7 Rs.}
-\value{The negated function}
-\arguments{\item{f}{the function to be negated}}
+\usage{
+  Negate(f)
+}
+\arguments{
+  \item{f}{the function to be negated}
+}
+\value{
+  The negated function
+}
+\description{
+  Negate a function; borrowed from
+  src/library/base/R/funprog.R for pre-2.7 Rs.
+}
+\examples{
+is.even <- function(a) a\%\%2 == 0
+is.odd <- Negate(is.even)
+stopifnot(Reduce(`&&`, Map(is.odd, c(1, 3, 5))))
+}
+

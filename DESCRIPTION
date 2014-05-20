@@ -8,5 +8,3 @@ Maintainer: Peter Danenberg <pcd@roxygen.org>
 Description: Curry, Compose, and other higher-order functions
 License: GPL (>= 2)
 LazyLoad: yes
-Collate:
-    'functional.R'

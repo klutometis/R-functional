@@ -1,6 +1,8 @@
 ##' Pre-specify a procedures named parameters, returning a new procedure.
 ##'
-##' Thanks, Byron Ellis.
+##' Thanks, Byron Ellis; and Aaron McDaid modified it to preserve
+##' names across invocation.
+##'
 ##' \url{https://stat.ethz.ch/pipermail/r-devel/2007-November/047318.html}
 ##' @param FUN the function to be curried
 ##' @param ... the determining parameters
@@ -10,8 +12,14 @@
 ##' double <- Curry(`*`, e1=2)
 ##' stopifnot(double(4) == 8)
 Curry <- function(FUN,...) {
-  .orig = list(...);
-  function(...) do.call(FUN,c(.orig,list(...)))
+  .orig = match.call()
+  .orig[[1]] <- NULL
+  .orig[[1]] <- NULL # Yes, a second NULL assignment to [[1]]
+  function(...) {
+    .inner = match.call()
+    .inner[[1]] <- NULL
+    do.call(FUN,c(.orig,.inner),envir=parent.frame())
+  }
 }
 
 ##' Lazy curry; thanks, Jamie!

@@ -17,3 +17,15 @@ list.copy <- function(list)
 
 list <- c(1, 2, 3)
 stopifnot(list.copy(list) == list)
+
+## Test the nullary case.
+f <- function() { 1 }
+g <- function(x) { x }
+stopifnot(Compose(f, g)() == 1)
+
+## Test the trivial case.
+stopifnot(Compose(function(x) {x})(1) == 1)
+
+## Test the normal case.
+f <- function(x) { x }
+stopifnot(Compose(f, f)(1) == 1)

@@ -53,6 +53,12 @@ Negate <- function(f)
 ##'
 ##' My Happy Hacking keyboard gave out during the writing of this
 ##' procedure; moment of silence, please.
+##'
+##' Had to make this slightly more complex to handle the
+##' \href{https://github.com/klutometis/R-functional/issues/3}{nullary
+##' case}; also included a fast-path for the trivial case.
+##'
+##' @importFrom lisp car cdr
 ##' @param \dots the functions to be composed
 ##' @return A composed function
 ##' @export
@@ -63,14 +69,31 @@ Negate <- function(f)
 ##' stopifnot(cadr(c(1,2,3)) == 2)
 Compose <- function(...) {
   fs <- list(...)
-  
   ## Thanks, Matthew Lungberg.
   if (!all(sapply(fs, is.function)))
     stop("Argument is not a function")
 
-  function(...) Reduce(function(x, f) f(x),
-                       fs,
-                       ...)
+  ## Trivial case
+  if (length(fs) == 1) {
+    car(fs)
+  } else {
+    function(...) {
+      args <- list(...)
+
+      ## Nullary case; have to seed the reduction by evaluating the
+      ## first function.
+      if (length(args) == 0) {
+        Reduce(function(x, f) f(x),
+               cdr(fs),
+               car(fs)())
+      } else {
+        ## Super-nullary case; reduce normally.
+        Reduce(function(x, f) f(x),
+               fs,
+               args)
+      }
+    }
+  }
 }
 
 ##' Identity function.
